@@ -75,6 +75,7 @@ if not no_headers
 		'include/sys/fsuid.h',
 		'include/sys/vt.h',
 		'include/sys/sysinfo.h',
+		'include/sys/kd.h',
 		subdir: 'sys'
 	)
 endif
