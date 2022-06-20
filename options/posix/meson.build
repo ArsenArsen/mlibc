@@ -58,17 +58,19 @@ libc_sources += files(
 	'generic/wordexp-stubs.cpp'
 )
 
-libc_sublibs += static_library('musl-generic-regex',
-	'musl-generic-regex/fnmatch.c',
-	'musl-generic-regex/glob.c',
-	'musl-generic-regex/regcomp.c',
-	'musl-generic-regex/regerror.c',
-	'musl-generic-regex/regexec.c',
-	'musl-generic-regex/tre-mem.c',
-	pic: true,
-	include_directories: libc_include_dirs,
-	c_args: ['-Wno-unused', '-Wno-implicit', '-Wno-parentheses', '-Wno-sign-compare', '-Wno-attributes', '-Wno-unknown-pragmas', '-Wno-implicit-fallthrough']
-)
+if not headers_only
+	libc_sublibs += static_library('musl-generic-regex',
+		'musl-generic-regex/fnmatch.c',
+		'musl-generic-regex/glob.c',
+		'musl-generic-regex/regcomp.c',
+		'musl-generic-regex/regerror.c',
+		'musl-generic-regex/regexec.c',
+		'musl-generic-regex/tre-mem.c',
+		pic: true,
+		include_directories: libc_include_dirs,
+		c_args: ['-Wno-unused', '-Wno-implicit', '-Wno-parentheses', '-Wno-sign-compare', '-Wno-attributes', '-Wno-unknown-pragmas', '-Wno-implicit-fallthrough']
+	)
+endif
 
 if not no_headers
 	install_headers(
