@@ -73,6 +73,7 @@ all_test_cases = [
 	'posix/regex',
 	'glibc/getopt',
 	'glibc/ffsl-ffsll',
+	'linux/xattr',
 ]
 
 if host_machine.system() == 'linux'

@@ -144,5 +144,17 @@
 #define SYS_inotify_init1 294
 #define SYS_kcmp 312
 #define SYS_getrandom 318
+#define SYS_setxattr 188
+#define SYS_lsetxattr 189
+#define SYS_fsetxattr 190
+#define SYS_getxattr 191
+#define SYS_lgetxattr 192
+#define SYS_fgetxattr 193
+#define SYS_listxattr 194
+#define SYS_llistxattr 195
+#define SYS_flistxattr 196
+#define SYS_removexattr 197
+#define SYS_lremovexattr 198
+#define SYS_fremovexattr 199
 
 #endif // _ARCH_SYSCALL_H
