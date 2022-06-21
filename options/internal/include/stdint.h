@@ -46,11 +46,12 @@ typedef __mlibc_uint_fast64 uint_fast64_t;
 
 // Miscellaneous (signed).
 typedef __mlibc_intmax intmax_t;
-typedef __mlibc_intptr intptr_t;
 
 // Miscellaneous (unsigned).
 typedef __mlibc_uintmax uintmax_t;
-typedef __mlibc_uintptr uintptr_t;
+
+// (u)intptr_t
+#include <bits/intptr_t.h>
 
 // ----------------------------------------------------------------------------
 // Constants.

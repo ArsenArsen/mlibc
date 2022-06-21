@@ -136,7 +136,7 @@ extern "C" {
 
 #define L_ctermid 20
 
-// MISSING: intptr_t
+#include <bits/intptr_t.h>
 
 int access(const char *path, int mode);
 unsigned int alarm(unsigned int seconds);
