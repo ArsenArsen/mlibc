@@ -178,3 +178,18 @@ long telldir(DIR *) {
 int versionsort(const struct dirent **a, const struct dirent **b) {
 	return strverscmp((*a)->d_name, (*b)->d_name);
 }
+
+[[gnu::alias("alphasort")]] int alphasort64(const struct dirent64 **,
+	const struct dirent64 **);
+
+[[gnu::alias("readdir")]] struct dirent64 *readdir64(DIR *);
+
+[[gnu::alias("readdir_r")]] int readdir_r64( DIR *__restrict,
+	struct dirent64 *__restrict, struct dirent **__restrict);
+
+[[gnu::alias("scandir")]] int scandir64(const char *, struct dirent64 ***,
+	int (*)(const struct dirent *), int (*)(const struct dirent64 **,
+		const struct dirent **));
+
+[[gnu::alias("versionsort")]] int versionsort64(const struct dirent64 **,
+	const struct dirent **);

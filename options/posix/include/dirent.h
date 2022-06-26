@@ -52,6 +52,15 @@ void seekdir(DIR *, long);
 long telldir(DIR *);
 int versionsort(const struct dirent **, const struct dirent **);
 
+/* 64 bit variants */
+#define dirent64 dirent
+int alphasort64(const struct dirent64 **, const struct dirent64 **);
+struct dirent64 *readdir64(DIR *);
+int readdir_r64(DIR *__restrict, struct dirent64 *__restrict, struct dirent **__restrict);
+int scandir64(const char *, struct dirent64 ***, int (*)(const struct dirent *),
+		int (*)(const struct dirent64 **, const struct dirent **));
+int versionsort64(const struct dirent64 **, const struct dirent **);
+
 #ifdef __cplusplus
 }
 #endif
