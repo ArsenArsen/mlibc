@@ -1005,14 +1005,14 @@ void sys_exit(int status) {
 #define FUTEX_WAKE 1
 
 int sys_futex_wait(int *pointer, int expected, const struct timespec *time) {
-	auto ret = do_cp_syscall(SYS_sys_futex, pointer, FUTEX_WAIT, expected, time);
+	auto ret = do_cp_syscall(SYS_futex, pointer, FUTEX_WAIT, expected, time);
 	if (int e = sc_error(ret); e)
 		return e;
 	return 0;
 }
 
 int sys_futex_wake(int *pointer) {
-	auto ret = do_syscall(SYS_sys_futex, pointer, FUTEX_WAKE, INT_MAX);
+	auto ret = do_syscall(SYS_futex, pointer, FUTEX_WAKE, INT_MAX);
 	if (int e = sc_error(ret); e)
 		return e;
 	return 0;
