@@ -43,6 +43,7 @@ if not no_headers
 		'include/abi-bits/inotify.h',
 		'include/abi-bits/clockid_t.h',
 		'include/abi-bits/xattr.h',
+		'include/abi-bits/sched_param.h',
 		subdir: 'abi-bits'
 	)
 	install_headers(

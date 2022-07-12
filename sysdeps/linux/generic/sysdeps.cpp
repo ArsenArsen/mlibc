@@ -1331,4 +1331,22 @@ int sys_flistxattr(int fd, char *list, size_t size, ssize_t *nread) {
 	*nread = sc_int_result<ssize_t>(ret);
 	return 0;
 }
+
+int sys_sched_getscheduler(pid_t pid, int *policy) {
+	auto ret = do_syscall(SYS_sched_getscheduler, pid);
+	if (int e = sc_error(ret); e) {
+		return e;
+	}
+	*policy = 0;
+	return 0;
+}
+
+int sys_sched_setscheduler(pid_t pid, int policy, const struct sched_param *param, int *old_policy) {
+	auto ret = do_syscall(SYS_sched_setscheduler, pid, policy, param);
+	if (int e = sc_error(ret); e) {
+		return e;
+	}
+	*old_policy = 0; /* linux does not implement this */
+	return 0;
+}
 } // namespace mlibc

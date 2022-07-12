@@ -71,6 +71,7 @@ all_test_cases = [
 	'posix/flockfile',
 	'posix/basename',
 	'posix/regex',
+	'posix/sched_getsetscheduler',
 	'glibc/getopt',
 	'glibc/ffsl-ffsll',
 	'linux/xattr',

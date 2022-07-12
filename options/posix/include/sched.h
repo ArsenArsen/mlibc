@@ -3,6 +3,7 @@
 #define _SCHED_H
 
 #include <abi-bits/pid_t.h>
+#include <abi-bits/sched_param.h>
 #include <bits/size_t.h>
 
 // MISSING: time_t, struct timespec
@@ -41,18 +42,6 @@
 extern "C" {
 #endif
 
-#define SCHED_OTHER 0
-#define SCHED_FIFO 1
-#define SCHED_RR 2
-#define SCHED_BATCH 3
-#define SCHED_IDLE 5
-#define SCHED_DEADLINE 6
-#define SCHED_RESET_ON_FORK 0x40000000
-
-struct sched_param {
-	int sched_priority;
-};
-
 int sched_yield();
 
 struct __mlibc_cpu_set {
@@ -69,6 +58,9 @@ int unshare(int flags);
 
 int __mlibc_cpu_isset(int cpu, cpu_set_t *set);
 int __mlibc_cpu_count(cpu_set_t *set);
+
+int sched_setscheduler(pid_t pid, int policy, const struct sched_param *param);
+int sched_getscheduler(pid_t pid);
 
 // Linux extension
 int clone(int (*)(void *), void *, int, void *, ...);

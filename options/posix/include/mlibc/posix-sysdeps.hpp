@@ -5,6 +5,7 @@
 
 #include <abi-bits/seek-whence.h>
 #include <abi-bits/vm-flags.h>
+#include <abi-bits/sched_param.h>
 #include <bits/off_t.h>
 #include <bits/ssize_t.h>
 #include <mlibc/fsfd_target.hpp>
@@ -190,6 +191,9 @@ int sys_vm_unmap(void *pointer, size_t size);
 [[gnu::weak]] int sys_setresgid(gid_t rgid, gid_t egid, gid_t sgid);
 [[gnu::weak]] int sys_setreuid(uid_t ruid, uid_t euid);
 [[gnu::weak]] int sys_setregid(gid_t rgid, gid_t egid);
+
+[[gnu::weak]] int sys_sched_getscheduler(pid_t pid, int *policy);
+[[gnu::weak]] int sys_sched_setscheduler(pid_t pid, int policy, const struct sched_param *param, int *old_policy);
 
 } //namespace mlibc
 

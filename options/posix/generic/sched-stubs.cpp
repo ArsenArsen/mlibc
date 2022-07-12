@@ -1,6 +1,7 @@
 
 #include <bits/ensure.h>
 #include <sched.h>
+#include <errno.h>
 
 #include <mlibc/debug.hpp>
 #include <mlibc/posix-sysdeps.hpp>
@@ -48,4 +49,24 @@ int unshare(int) {
 int clone(int (*)(void *), void *, int, void *, ...) {
 	__ensure(!"Not implemented");
 	__builtin_unreachable();
+}
+
+int sched_getscheduler(pid_t pid) {
+	auto sysdep = MLIBC_CHECK_OR_ENOSYS(mlibc::sys_sched_getscheduler, -1);
+	int ret;
+	if (int e = sysdep(pid, &ret); e) {
+		errno = e;
+		return -1;
+	}
+	return ret;
+}
+
+int sched_setscheduler(pid_t pid, int policy, const struct sched_param *param) {
+	auto sysdep = MLIBC_CHECK_OR_ENOSYS(mlibc::sys_sched_setscheduler, -1);
+	int ret;
+	if (int e = sysdep(pid, policy, param, &ret); e) {
+		errno = e;
+		return -1;
+	}
+	return ret;
 }
