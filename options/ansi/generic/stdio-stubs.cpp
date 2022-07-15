@@ -241,16 +241,6 @@ int renameat(int olddirfd, const char *old_path, int newdirfd, const char *new_p
     return 0;
 }
 
-FILE *tmpfile(void) {
-	__ensure(!"Not implemented");
-	__builtin_unreachable();
-}
-
-char *tmpnam(char *) {
-	__ensure(!"Not implemented");
-	__builtin_unreachable();
-}
-
 // fflush() is provided by the POSIX sublibrary
 // fopen() is provided by the POSIX sublibrary
 FILE *freopen(const char *__restrict, const char *__restrict, FILE *__restrict) {

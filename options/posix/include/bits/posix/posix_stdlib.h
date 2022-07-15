@@ -28,8 +28,8 @@ int unsetenv(const char *);
 // ----------------------------------------------------------------------------
 
 int mkstemp(char *);
-int mkostemp(char *, int flags);
 char *mkdtemp(char *path);
+char *tempnam(const char *dir, const char *pfx);
 
 char *realpath(const char *__restrict, char *__restrict);
 

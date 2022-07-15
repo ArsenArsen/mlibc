@@ -20,6 +20,7 @@ ansi_sources = files(
 	'generic/time-stubs.cpp',
 	'generic/wchar-stubs.cpp',
 	'generic/wctype.cpp',
+	'generic/tempfile.cpp',
 )
 
 if not no_headers

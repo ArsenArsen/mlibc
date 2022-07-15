@@ -11,8 +11,6 @@
 extern "C" {
 #endif
 
-#define P_tmpdir "/tmp"
-
 int fileno(FILE *file);
 FILE *fdopen(int fd, const char *mode);
 

@@ -55,7 +55,8 @@ libc_sources += files(
 	'generic/sys-ipc.cpp',
 	'generic/time.cpp',
 	'generic/wordexp-stubs.cpp',
-	'generic/wordexp-stubs.cpp'
+	'generic/wordexp-stubs.cpp',
+	'generic/tempfile.cpp',
 )
 
 if not headers_only
