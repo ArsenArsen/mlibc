@@ -75,7 +75,6 @@ typedef size_t fpos_t;
 
 #define FOPEN_MAX 1024
 #define FILENAME_MAX 256
-#define L_tmpnam 256
 
 #define TMP_MAX 1024
 
@@ -222,8 +221,17 @@ int fputs_unlocked(const char *, FILE *);
 }
 #endif
 
+#define L_tmpnam 256
+#if defined(__MLIBC_POSIX_OPTION) || defined(__MLIBC_NEED_TMP_DEFINES)
+#	define P_tmpdir "/tmp"
+#endif
+
 #ifdef __MLIBC_POSIX_OPTION
 #	include <bits/posix/posix_stdio.h>
+#endif
+
+#ifdef __MLIBC_GLIBC_OPTION
+#	include <bits/glibc/glibc_stdio.h>
 #endif
 
 #endif // _STDIO_H

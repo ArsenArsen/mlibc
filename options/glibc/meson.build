@@ -12,6 +12,7 @@ libc_sources += files(
 	'generic/glibc-signal.cpp',
 	'generic/execinfo.cpp',
 	'generic/string.cpp',
+	'generic/tempfile.cpp',
 )
 
 if not no_headers
@@ -69,6 +70,8 @@ if not no_headers
 	)
 	install_headers(
 		'include/bits/glibc/glibc_signal.h',
+		'include/bits/glibc/glibc_stdlib.h',
+		'include/bits/glibc/glibc_stdio.h',
 		subdir: 'bits/glibc'
 	)
 endif

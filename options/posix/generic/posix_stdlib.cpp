@@ -17,6 +17,7 @@
 #include <mlibc/debug.hpp>
 #include <mlibc/posix-sysdeps.hpp>
 #include <mlibc/rtdl-config.hpp>
+#include <mlibc/mktemp.hpp>
 
 namespace {
 	constexpr bool debugPathResolution = false;
@@ -138,74 +139,6 @@ char *setstate(char *state) {
 // ----------------------------------------------------------------------------
 // Path handling.
 // ----------------------------------------------------------------------------
-
-int mkostemp(char *pattern, int flags) {
-	flags &= ~O_WRONLY;
-	auto n = strlen(pattern);
-	__ensure(n >= 6);
-	if(n < 6) {
-		errno = EINVAL;
-		return -1;
-	}
-	for(size_t i = 0; i < 6; i++) {
-		if(pattern[n - 6 + i] == 'X')
-			continue;
-		errno = EINVAL;
-		return -1;
-	}
-
-	// TODO: Do an exponential search.
-	for(size_t i = 0; i < 999999; i++) {
-		__ensure(sprintf(pattern + (n - 6), "%06zu", i) == 6);
-//		mlibc::infoLogger() << "mlibc: mkstemp candidate is "
-//				<< (const char *)pattern << frg::endlog;
-
-		int fd;
-		if(int e = mlibc::sys_open(pattern, O_RDWR | O_CREAT | O_EXCL | flags, S_IRUSR | S_IWUSR, &fd); !e) {
-			return fd;
-		}else if(e != EEXIST) {
-			errno = e;
-			return -1;
-		}
-	}
-
-	errno = EEXIST;
-	return -1;
-}
-
-int mkstemp(char *path) {
-	return mkostemp(path, 0);
-}
-
-char *mkdtemp(char *pattern) {
-	mlibc::infoLogger() << "mlibc mkdtemp(" << pattern << ") called" << frg::endlog;
-	auto n = strlen(pattern);
-	__ensure(n >= 6);
-	if(n < 6) {
-		errno = EINVAL;
-		return NULL;
-	}
-	for(size_t i = 0; i < 6; i++) {
-		if(pattern[n - 6 + i] == 'X')
-			continue;
-		errno = EINVAL;
-		return NULL;
-	}
-
-	// TODO: Do an exponential search.
-	for(size_t i = 0; i < 999999; i++) {
-		__ensure(sprintf(pattern + (n - 6), "%06zu", i) == 6);
-		if(int e = mlibc::sys_mkdir(pattern, S_IRWXU); !e) {
-			return pattern;
-		}else if(e != EEXIST) {
-			errno = e;
-			return NULL;
-		}
-	}
-
-	errno = EEXIST;
-	return NULL;
-}
 
 char *realpath(const char *path, char *out) {
 	if(debugPathResolution)

@@ -116,5 +116,9 @@ size_t wcstombs(char *mb_string, const wchar_t *__restrict wc_string, size_t max
 #	include <bits/posix/posix_stdlib.h>
 #endif
 
+#ifdef __MLIBC_GLIBC_OPTION
+#	include <bits/glibc/glibc_stdlib.h>
+#endif
+
 #endif // _STDLIB_H
 

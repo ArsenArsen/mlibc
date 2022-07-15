@@ -58,6 +58,7 @@ libc_sources += files(
 	'generic/wordexp-stubs.cpp',
 	'musl-generic/fnmatch.cpp',
 	'musl-generic/glob.cpp',
+	'generic/tempfile.cpp',
 )
 
 if not no_headers

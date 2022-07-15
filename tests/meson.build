@@ -19,6 +19,7 @@ all_test_cases = [
 	'ansi/wcsncasecmp',
 	'ansi/fopen',
 	'ansi/memmem',
+	'ansi/tempfile',
 	'bsd/ns_get_put',
 	'bsd/reallocarray',
 	'bsd/strl',
@@ -70,6 +71,7 @@ all_test_cases = [
 	'posix/pause',
 	'posix/flockfile',
 	'posix/basename',
+	'posix/tempfile',
 	'glibc/getopt',
 	'glibc/ffsl-ffsll',
 ]
