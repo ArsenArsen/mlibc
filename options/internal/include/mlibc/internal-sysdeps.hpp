@@ -35,6 +35,8 @@ int sys_close(int fd);
 int sys_vm_map(void *hint, size_t size, int prot, int flags, int fd, off_t offset, void **window);
 int sys_vm_unmap(void *pointer, size_t size);
 
+[[gnu::weak]] int sys_getentropy(void *buffer, size_t length);
+
 } //namespace mlibc
 
 #endif // MLIBC_INTERNAL_SYSDEPS
