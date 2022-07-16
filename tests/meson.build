@@ -153,6 +153,8 @@ foreach test_name : all_test_cases
 		continue
 	elif test_subdir == 'posix' and disable_posix_option
 		continue
+	elif test_subdir == 'linux' and disable_linux_option
+		continue
 	endif
 
 	should_fail = fail_test_cases.contains(test_name)
