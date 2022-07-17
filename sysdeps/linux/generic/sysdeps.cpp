@@ -555,18 +555,15 @@ int sys_tcflow(int fd, int action) {
 	return 0;
 }
 
-int sys_access(const char *path, int mode) {
-	auto ret = do_syscall(SYS_faccessat, AT_FDCWD, path, mode, 0);
-	if (int e = sc_error(ret); e)
-		return e;
-	return 0;
-}
-
 int sys_faccessat(int dirfd, const char *pathname, int mode, int flags) {
 	auto ret = do_syscall(SYS_faccessat, dirfd, pathname, mode, flags);
 	if (int e = sc_error(ret); e)
 		return e;
 	return 0;
+}
+
+int sys_access(const char *path, int mode) {
+	return sys_faccessat(AT_FDCWD, path, mode, 0);
 }
 
 int sys_accept(int fd, int *newfd, struct sockaddr *addr_ptr, socklen_t *addr_length) {
