@@ -1,3 +1,0 @@
-#ifdef __MLIBC_ANSI_OPTION
-#ifndef __MLIBC_ANSI_OPTION
-defined(__MLIBC_ANSI_OPTION)
